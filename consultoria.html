@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consultoría ISO — Isonauta · Ecosistemas Normativos</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #1A1916; --dark2: #252420;
+    --bg: #F7F6F2; --surface: #FFFFFF; --surface2: #F0EEE8;
+    --border: rgba(0,0,0,0.10); --border2: rgba(0,0,0,0.18);
+    --text: #1A1916; --text2: #6B6A64; --text3: #9C9A92;
+    --ocre: #C9922A; --ocre-light: #F5E6C8; --ocre-dark: #8B6218;
+    --radius: 10px; --radius-lg: 16px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+    --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+  /* Nav */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(26,25,22,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,146,42,0.15); padding: 0 24px; }
+  .nav-inner { max-width: 1080px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+  .nav-brand { font-size: 15px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ocre); text-decoration: none; }
+  .nav-back { font-size: 12px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color .15s; }
+  .nav-back:hover { color: rgba(255,255,255,0.8); }
+  .nav-cta { font-size: 12px; font-weight: 500; padding: 7px 16px; border: 0.5px solid rgba(201,146,42,0.4); border-radius: 20px; color: var(--ocre); text-decoration: none; transition: all .15s; }
+  .nav-cta:hover { background: rgba(201,146,42,0.1); }
+
+  /* Hero */
+  .hero { min-height: 100vh; background: var(--dark); display: flex; flex-direction: column; justify-content: center; padding: 120px 24px 80px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -200px; right: -100px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(201,146,42,0.07) 0%, transparent 70%); pointer-events: none; }
+  .hero-inner { max-width: 1080px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(201,146,42,0.5); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--ocre); opacity: 0.4; }
+  .hero-title { font-size: clamp(44px, 6.5vw, 88px); font-weight: 600; letter-spacing: -2px; color: #F7F6F2; line-height: 1.0; margin-bottom: 16px; }
+  .hero-title em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; color: var(--ocre); }
+  .hero-sub { font-size: 16px; color: rgba(247,246,242,0.35); font-weight: 300; line-height: 1.7; max-width: 560px; margin-bottom: 16px; }
+  .hero-distincion { font-family: 'Playfair Display', serif; font-style: italic; font-size: 20px; color: rgba(201,146,42,0.6); margin-bottom: 44px; }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary { font-size: 13px; font-weight: 500; padding: 12px 28px; background: var(--ocre); border: none; border-radius: 24px; color: var(--dark); cursor: pointer; text-decoration: none; transition: opacity .15s; }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-secondary { font-size: 13px; padding: 12px 28px; background: transparent; border: 0.5px solid rgba(255,255,255,0.18); border-radius: 24px; color: rgba(255,255,255,0.55); cursor: pointer; text-decoration: none; transition: all .15s; }
+  .btn-secondary:hover { border-color: rgba(255,255,255,0.35); color: rgba(255,255,255,0.8); }
+
+  /* Stats hero */
+  .hero-stats { display: flex; gap: 40px; margin-top: 56px; padding-top: 40px; border-top: 0.5px solid rgba(255,255,255,0.06); flex-wrap: wrap; }
+  .hero-stat .num { font-size: 36px; font-weight: 600; color: var(--ocre); letter-spacing: -1px; line-height: 1; margin-bottom: 4px; }
+  .hero-stat .label { font-size: 11px; color: rgba(247,246,242,0.3); font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* Sección genérica */
+  .seccion { padding: 80px 24px; }
+  .seccion.dark { background: var(--dark2); }
+  .seccion.alt { background: var(--surface2); }
+  .seccion-inner { max-width: 1080px; margin: 0 auto; }
+  .section-eyebrow { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--ocre); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; }
+  .section-eyebrow.light { color: rgba(201,146,42,0.55); }
+  .section-titulo { font-size: clamp(26px,3.5vw,42px); font-weight: 600; letter-spacing: -0.8px; margin-bottom: 16px; line-height: 1.15; }
+  .section-titulo.light { color: #F7F6F2; }
+  .section-titulo em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; color: var(--ocre); }
+  .section-desc { font-size: 15px; color: var(--text2); line-height: 1.7; max-width: 560px; margin-bottom: 40px; }
+  .section-desc.light { color: rgba(247,246,242,0.38); }
+
+  /* Lo que NO somos / LO que SÍ somos */
+  .diferencia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+  @media (max-width:700px) { .diferencia-grid { grid-template-columns: 1fr; } }
+  .dif-col { border-radius: var(--radius-lg); padding: 28px 24px; }
+  .dif-col.no { background: rgba(255,255,255,0.03); border: 0.5px solid rgba(255,255,255,0.06); }
+  .dif-col.si { background: rgba(201,146,42,0.06); border: 0.5px solid rgba(201,146,42,0.2); }
+  .dif-titulo { font-size: 13px; font-weight: 600; margin-bottom: 16px; font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; }
+  .dif-col.no .dif-titulo { color: rgba(247,246,242,0.3); }
+  .dif-col.si .dif-titulo { color: var(--ocre); }
+  .dif-item { font-size: 14px; line-height: 1.6; padding: 8px 0; border-bottom: 0.5px solid rgba(255,255,255,0.05); }
+  .dif-col.no .dif-item { color: rgba(247,246,242,0.35); }
+  .dif-col.si .dif-item { color: rgba(247,246,242,0.65); border-bottom-color: rgba(201,146,42,0.08); }
+  .dif-item:last-child { border-bottom: none; }
+
+  /* SISMO */
+  .sismo-wrap { margin-top: 40px; }
+  .sismo-header { background: var(--dark); border-radius: var(--radius-lg) var(--radius-lg) 0 0; padding: 24px 28px; display: flex; align-items: center; justify-content: space-between; }
+  .sismo-titulo-wrap h3 { font-size: 22px; font-weight: 600; color: #F7F6F2; letter-spacing: -0.3px; }
+  .sismo-titulo-wrap p { font-size: 12px; color: rgba(247,246,242,0.35); font-family: 'DM Mono', monospace; margin-top: 4px; }
+  .sismo-badge { font-size: 10px; font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 12px; border-radius: 12px; background: rgba(201,146,42,0.12); color: var(--ocre); border: 0.5px solid rgba(201,146,42,0.25); }
+  .sismo-fases { background: var(--surface); border: 0.5px solid var(--border); border-top: none; border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
+  .sismo-fase { display: grid; grid-template-columns: 56px 1fr; gap: 0; border-bottom: 0.5px solid var(--border); }
+  .sismo-fase:last-child { border-bottom: none; }
+  .sismo-fase-num { display: flex; align-items: center; justify-content: center; padding: 20px; background: var(--surface2); border-right: 0.5px solid var(--border); }
+  .sismo-fase-num span { font-size: 18px; font-weight: 600; color: var(--ocre); font-family: 'DM Mono', monospace; }
+  .sismo-fase-content { padding: 18px 22px; }
+  .sismo-fase-titulo { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .sismo-fase-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
+
+  /* Normas */
+  .normas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap: 12px; margin-top: 36px; }
+  .norma-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 20px; text-align: center; box-shadow: var(--shadow); transition: border-color .2s, transform .2s; }
+  .norma-card:hover { border-color: var(--ocre); transform: translateY(-2px); }
+  .norma-code { font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; color: var(--ocre); margin-bottom: 6px; }
+  .norma-name { font-size: 11px; color: var(--text2); line-height: 1.4; }
+
+  /* Artefactos */
+  .artefactos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 12px; margin-top: 36px; }
+  .art-card { background: var(--dark); border: 0.5px solid rgba(201,146,42,0.15); border-radius: var(--radius-lg); padding: 20px; transition: border-color .2s; }
+  .art-card:hover { border-color: rgba(201,146,42,0.4); }
+  .art-clausula { font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(201,146,42,0.5); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .art-titulo { font-size: 14px; font-weight: 600; color: #F7F6F2; margin-bottom: 4px; }
+  .art-desc { font-size: 11px; color: rgba(247,246,242,0.35); line-height: 1.5; }
+
+  /* Marco conceptual */
+  .marco-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-top: 40px; }
+  @media (max-width:700px) { .marco-grid { grid-template-columns: 1fr; } }
+  .marco-autores { display: flex; flex-direction: column; gap: 14px; }
+  .autor-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 16px 20px; box-shadow: var(--shadow); }
+  .autor-nombre { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .autor-aporte { font-size: 12px; color: var(--text2); line-height: 1.55; }
+  .autor-concepto { font-size: 10px; font-family: 'DM Mono', monospace; color: var(--ocre); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* CTA */
+  .cta-final { background: var(--dark); padding: 80px 24px; text-align: center; }
+  .cta-final-inner { max-width: 640px; margin: 0 auto; }
+  .cta-titulo { font-size: clamp(28px,4vw,48px); font-weight: 600; color: #F7F6F2; letter-spacing: -1px; margin-bottom: 12px; line-height: 1.1; }
+  .cta-titulo em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; color: var(--ocre); }
+  .cta-desc { font-size: 14px; color: rgba(247,246,242,0.3); margin-bottom: 32px; line-height: 1.7; }
+  .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  /* Footer */
+  .footer { background: #111110; padding: 20px 24px; border-top: 1px solid rgba(201,146,42,0.08); }
+  .footer-inner { max-width: 1080px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+  .footer-brand { font-size: 12px; color: var(--ocre); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+  .footer-copy { font-size: 11px; color: rgba(255,255,255,0.15); font-family: 'DM Mono', monospace; }
+
+  /* WhatsApp */
+  .wa-btn { position: fixed; bottom: 28px; right: 28px; z-index: 200; width: 52px; height: 52px; border-radius: 50%; background: #25D366; box-shadow: 0 4px 16px rgba(37,211,102,0.4); display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; transform: translateY(16px); transition: opacity .3s, transform .3s; pointer-events: none; }
+  .wa-btn.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
+  .wa-btn:hover { box-shadow: 0 6px 24px rgba(37,211,102,0.55); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">Isonauta</a>
+    <a href="/" class="nav-back">← Volver al inicio</a>
+    <a href="#contacto" class="nav-cta">Conversemos</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Consultoría especializada</p>
+    <h1 class="hero-title">Con nosotros<br><em>certificas</em> tu sistema</h1>
+    <p class="hero-sub">No implementamos normas. Gestionamos ecosistemas normativos. Un proceso de cambio organizacional que pone a las personas primero y construye sistemas que se sostienen solos.</p>
+    <p class="hero-distincion">Científicos organizacionales al servicio de tu gestión</p>
+    <div class="hero-actions">
+      <a href="#contacto" class="btn-primary">Conversemos</a>
+      <a href="#metodologia" class="btn-secondary">Ver metodología SISMO</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><p class="num">25+</p><p class="label">Años de experiencia</p></div>
+      <div class="hero-stat"><p class="num">7</p><p class="label">Normas ISO</p></div>
+      <div class="hero-stat"><p class="num">100%</p><p class="label">Orientación a personas</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Diferenciación -->
+<section class="seccion dark">
+  <div class="seccion-inner">
+    <p class="section-eyebrow light">Nuestra postura</p>
+    <h2 class="section-titulo light">No somos multinorma.<br>Gestionamos <em>Ecosistemas Normativos</em>.</h2>
+    <p class="section-desc light">La diferencia no es semántica. Un consultor multinorma aplica requisitos. Un gestor de ecosistemas normativos entiende cómo las normas interactúan entre sí, con la cultura y con las personas que hacen funcionar el sistema.</p>
+    <div class="diferencia-grid">
+      <div class="dif-col no">
+        <p class="dif-titulo">Lo que no hacemos</p>
+        <p class="dif-item">Implementar normas como listas de chequeo</p>
+        <p class="dif-item">Crear documentación que nadie lee</p>
+        <p class="dif-item">Certificar para la auditoría, no para la organización</p>
+        <p class="dif-item">Ignorar la cultura como factor crítico del SGC</p>
+        <p class="dif-item">Tratar todas las organizaciones igual</p>
+      </div>
+      <div class="dif-col si">
+        <p class="dif-titulo">Lo que sí hacemos</p>
+        <p class="dif-item">Diseñar ecosistemas normativos que se sostienen solos</p>
+        <p class="dif-item">Construir sistemas que producen comprensión organizacional</p>
+        <p class="dif-item">Certificar desde la convicción, no desde el cumplimiento</p>
+        <p class="dif-item">Integrar cultura, procesos y norma como un sistema único</p>
+        <p class="dif-item">Desarrollar artefactos a medida de cada cliente</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Metodología SISMO -->
+<section class="seccion" id="metodologia">
+  <div class="seccion-inner">
+    <p class="section-eyebrow">Metodología</p>
+    <h2 class="section-titulo">SISMO — Sistema Integrado de<br>Soporte para la <em>Mejora Organizacional</em></h2>
+    <p class="section-desc">SISMO es el modelo propio de Isonauta para gestionar el cambio organizacional en procesos de implementación y mejora de sistemas de gestión. No es una lista de pasos — es un marco sistémico que reconoce que toda certificación es también un proceso de transformación cultural.</p>
+
+    <div class="sismo-wrap">
+      <div class="sismo-header">
+        <div class="sismo-titulo-wrap">
+          <h3>SISMO</h3>
+          <p>Sistema Integrado de Soporte para la Mejora Organizacional</p>
+        </div>
+        <span class="sismo-badge">Modelo propio Isonauta</span>
+      </div>
+      <div class="sismo-fases">
+        <div class="sismo-fase">
+          <div class="sismo-fase-num"><span>S</span></div>
+          <div class="sismo-fase-content">
+            <p class="sismo-fase-titulo">Sensibilización</p>
+            <p class="sismo-fase-desc">Activación del sistema humano. Antes de cualquier documento, las personas entienden por qué y para qué. El cambio comienza en el significado.</p>
+          </div>
+        </div>
+        <div class="sismo-fase">
+          <div class="sismo-fase-num"><span>I</span></div>
+          <div class="sismo-fase-content">
+            <p class="sismo-fase-titulo">Instalación</p>
+            <p class="sismo-fase-desc">Diseño e implementación de la estructura normativa. Procesos, documentos y controles construidos desde la realidad operativa de la organización.</p>
+          </div>
+        </div>
+        <div class="sismo-fase">
+          <div class="sismo-fase-num"><span>S</span></div>
+          <div class="sismo-fase-content">
+            <p class="sismo-fase-titulo">Seguimiento</p>
+            <p class="sismo-fase-desc">Monitoreo activo del sistema en operación. Indicadores, auditorías internas y ajustes en tiempo real antes de la certificación.</p>
+          </div>
+        </div>
+        <div class="sismo-fase">
+          <div class="sismo-fase-num"><span>M</span></div>
+          <div class="sismo-fase-content">
+            <p class="sismo-fase-titulo">Maduración</p>
+            <p class="sismo-fase-desc">El sistema deja de depender del consultor. La organización incorpora los ciclos de mejora como parte de su funcionamiento natural.</p>
+          </div>
+        </div>
+        <div class="sismo-fase">
+          <div class="sismo-fase-num"><span>O</span></div>
+          <div class="sismo-fase-content">
+            <p class="sismo-fase-titulo">Optimización</p>
+            <p class="sismo-fase-desc">Mejora continua con criterio. El sistema evoluciona con la organización, integrando nuevas normas y adaptándose al ecosistema normativo completo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Normas -->
+<section class="seccion alt">
+  <div class="seccion-inner">
+    <p class="section-eyebrow">Especialidad</p>
+    <h2 class="section-titulo">Las normas que <em>gestionamos</em></h2>
+    <p class="section-desc">Cada norma es un sistema de significados. Nuestra especialidad es entender cómo interactúan entre sí y con la cultura específica de tu organización.</p>
+    <div class="normas-grid">
+      <div class="norma-card">
+        <p class="norma-code">ISO 9001</p>
+        <p class="norma-name">Gestión de Calidad</p>
+      </div>
+      <div class="norma-card">
+        <p class="norma-code">ISO 14001</p>
+        <p class="norma-name">Gestión Ambiental</p>
+      </div>
+      <div class="norma-card">
+        <p class="norma-code">ISO 45001</p>
+        <p class="norma-name">Seguridad y Salud en el Trabajo</p>
+      </div>
+      <div class="norma-card">
+        <p class="norma-code">ISO 27001</p>
+        <p class="norma-name">Seguridad de la Información</p>
+      </div>
+      <div class="norma-card">
+        <p class="norma-code">ISO 27701</p>
+        <p class="norma-name">Privacidad de la Información</p>
+      </div>
+      <div class="norma-card">
+        <p class="norma-code">ISO 37001</p>
+        <p class="norma-name">Antisoborno</p>
+      </div>
+      <div class="norma-card">
+        <p class="norma-code">ISO 37301</p>
+        <p class="norma-name">Compliance</p>
+      </div>
+      <div class="norma-card" style="border-color:rgba(201,146,42,0.25);background:#fffdf7">
+        <p class="norma-code">SGI</p>
+        <p class="norma-name">Sistemas de Gestión Integrados</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Artefactos -->
+<section class="seccion dark">
+  <div class="seccion-inner">
+    <p class="section-eyebrow light">Laboratorio</p>
+    <h2 class="section-titulo light">Consultoría <em>operativa</em> con artefactos</h2>
+    <p class="section-desc light">En el laboratorio Isonauta hemos diseñado artefactos que cubren los principales requisitos ISO. Herramientas interactivas con criterio incorporado que guían el pensamiento antes de producir documentación. Y cuando la solución estándar no alcanza, desarrollamos artefactos a medida.</p>
+
+    <div class="artefactos-grid">
+      <div class="art-card">
+        <p class="art-clausula">Cláusula 4.1</p>
+        <p class="art-titulo">Análisis PESTEL</p>
+        <p class="art-desc">Contexto organizacional con criterios de ponderación por juicio experto.</p>
+      </div>
+      <div class="art-card">
+        <p class="art-clausula">Cláusula 4.2 · 6.1</p>
+        <p class="art-titulo">Partes Interesadas</p>
+        <p class="art-desc">Mapa poder × impacto con derivación de riesgos y oportunidades.</p>
+      </div>
+      <div class="art-card">
+        <p class="art-clausula">Cláusula 6.1</p>
+        <p class="art-titulo">FODA Sistémico</p>
+        <p class="art-desc">Cruce de variables y decisiones estratégicas con output directo al SGC.</p>
+      </div>
+      <div class="art-card">
+        <p class="art-clausula">Liderazgo · ICC</p>
+        <p class="art-titulo">Liderazgo y Compromiso</p>
+        <p class="art-desc">Autoevaluación de liderazgo con Índice de Cohesión Cultural.</p>
+      </div>
+      <div class="art-card">
+        <p class="art-clausula">Cláusula 10.2</p>
+        <p class="art-titulo">No Conformidades</p>
+        <p class="art-desc">5 Por qués integrados que distinguen corrección de acción correctiva.</p>
+      </div>
+      <div class="art-card" style="border-color:rgba(201,146,42,0.3);border-style:dashed">
+        <p class="art-clausula">A medida</p>
+        <p class="art-titulo">Artefactos personalizados</p>
+        <p class="art-desc">Desarrollamos artefactos específicos para los requisitos únicos de tu organización.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;text-align:center">
+      <a href="https://artefactos.vercel.app" target="_blank" style="font-size:13px;color:var(--ocre);text-decoration:none;font-weight:500;border:0.5px solid rgba(201,146,42,0.3);padding:10px 24px;border-radius:20px;display:inline-block;transition:background .15s" onmouseover="this.style.background='rgba(201,146,42,0.08)'" onmouseout="this.style.background='transparent'">Explorar Artefactos Isonauta →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Marco conceptual -->
+<section class="seccion">
+  <div class="seccion-inner">
+    <p class="section-eyebrow">Marco conceptual</p>
+    <h2 class="section-titulo">Científicos <em>organizacionales</em></h2>
+    <p class="section-desc">Nuestra consultoría tiene un alto componente comunicacional. No trabajamos solo con procesos — trabajamos con sistemas de significado. El marco conceptual que guía nuestro método integra tres teorías que cambian cómo entendemos las organizaciones.</p>
+    <div class="marco-grid">
+      <div class="marco-autores">
+        <div class="autor-card">
+          <p class="autor-nombre">Humberto Maturana · Francisco Varela</p>
+          <p class="autor-aporte">La Biología del Conocer y la teoría de la autopoiesis explican cómo los sistemas vivos — incluidas las organizaciones — se producen y reproducen a sí mismos. Toda implementación normativa es también un proceso cognitivo colectivo.</p>
+          <p class="autor-concepto">Autopoiesis · Biología de la Cognición</p>
+        </div>
+        <div class="autor-card">
+          <p class="autor-nombre">Niklas Luhmann</p>
+          <p class="autor-aporte">La teoría de sistemas sociales de Luhmann nos permite ver la organización como un sistema que opera por distinciones y comunicaciones. Un SGC no es un conjunto de documentos — es un sistema de comunicación.</p>
+          <p class="autor-concepto">Teoría de Sistemas Sociales</p>
+        </div>
+        <div class="autor-card">
+          <p class="autor-nombre">Elena Esposito</p>
+          <p class="autor-aporte">La teoría de la comunicación artificial nos orienta en el diseño de soluciones donde la inteligencia artificial y los sistemas de gestión interactúan como interfaces, no como sustitutos del juicio humano.</p>
+          <p class="autor-concepto">Comunicación Artificial</p>
+        </div>
+      </div>
+      <div>
+        <div style="background:var(--dark);border-radius:var(--radius-lg);padding:32px;border:0.5px solid rgba(201,146,42,0.15)">
+          <p style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(201,146,42,0.5);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:20px">Lo que esto significa en la práctica</p>
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div style="border-left:2px solid rgba(201,146,42,0.3);padding:10px 16px">
+              <p style="font-size:14px;color:#F7F6F2;font-weight:500;margin-bottom:4px">Las personas no resisten el cambio</p>
+              <p style="font-size:12px;color:rgba(247,246,242,0.4);line-height:1.6">Operan desde su propia lógica. Nuestro rol es crear las condiciones para que el sistema normativo tenga sentido para ellas.</p>
+            </div>
+            <div style="border-left:2px solid rgba(201,146,42,0.3);padding:10px 16px">
+              <p style="font-size:14px;color:#F7F6F2;font-weight:500;margin-bottom:4px">Un SGC es un sistema de comunicación</p>
+              <p style="font-size:12px;color:rgba(247,246,242,0.4);line-height:1.6">No solo de documentos. Lo que circula en la organización — conversaciones, decisiones, evidencias — es el sistema.</p>
+            </div>
+            <div style="border-left:2px solid rgba(201,146,42,0.3);padding:10px 16px">
+              <p style="font-size:14px;color:#F7F6F2;font-weight:500;margin-bottom:4px">La certificación es un umbral, no un destino</p>
+              <p style="font-size:12px;color:rgba(247,246,242,0.4);line-height:1.6">La organización que certifica no termina un proceso — comienza a operar en un nivel de madurez diferente.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-final" id="contacto">
+  <div class="cta-final-inner">
+    <h2 class="cta-titulo">¿Listo para <em>certificar</em><br>desde la convicción?</h2>
+    <p class="cta-desc">Cuéntanos en qué norma estás trabajando, en qué etapa estás y qué obstáculo tienes. Preparamos una propuesta en 48 horas.</p>
+    <div class="cta-btns">
+      <a id="cta-wa" href="#" target="_blank" class="btn-primary" style="background:#25D366">Escribir por WhatsApp</a>
+      <a id="cta-email" href="#" class="btn-secondary">Solicitar propuesta por email</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-brand">Isonauta</span>
+    <span class="footer-copy">© 2026 · Procesus · Ecosistemas Normativos</span>
+  </div>
+</footer>
+
+<a class="wa-btn" id="wa-btn" href="#" target="_blank">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.096.541 4.064 1.487 5.782L0 24l6.401-1.681A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-5.003-1.366l-.359-.214-3.8.997 1.015-3.694-.235-.38A9.787 9.787 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+</a>
+
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+  var wa = 'https://wa.me/56981571712?text=Hola%20Cristián%2C%20me%20interesa%20la%20consultoría%20ISO%20de%20Isonauta';
+  var mail = 'mailto:' + 'cristian' + '@' + 'cristiancordero.cl' + '?subject=Consultoría%20ISO%20Isonauta';
+  document.getElementById('wa-btn').href = wa;
+  document.getElementById('cta-wa').href = wa;
+  document.getElementById('cta-email').href = mail;
+});
+window.addEventListener('scroll', function() {
+  var btn = document.getElementById('wa-btn');
+  if(window.scrollY > 300) btn.classList.add('visible');
+  else btn.classList.remove('visible');
+}, { passive: true });
+</script>
+</body>
+</html>
