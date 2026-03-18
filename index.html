@@ -206,6 +206,9 @@
   .wa-btn.visible:hover + .wa-tooltip,
   .wa-btn.visible:focus + .wa-tooltip { opacity: 1; transform: translateX(0); }
 
+  .videos-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+  @media (max-width: 700px) { .videos-grid { grid-template-columns: 1fr; gap: 14px; } }
+
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes scrollPulse { 0%,100% { opacity: 0.3; } 50% { opacity: 0.8; } }
 </style>
@@ -429,7 +432,7 @@
         Ver canal @isonauta →
       </a>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+    <div class="videos-grid">
       <div style="position:relative;padding-bottom:56.25%;height:0;border-radius:12px;overflow:hidden;border:0.5px solid rgba(0,0,0,0.18);box-shadow:0 1px 3px rgba(0,0,0,0.06)">
         <iframe src="https://www.youtube.com/embed/_yLKeulzHb4?rel=0&modestbranding=1" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:none"></iframe>
       </div>
