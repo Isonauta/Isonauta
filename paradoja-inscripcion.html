@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Gran Paradoja ISO — Inscríbete a la presentación</title>
+<meta name="description" content="Presentación del estudio que revela lo que 108 encargados de sistemas de gestión dicen sobre el liderazgo ISO. Inscríbete gratis.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #1A1916; --dark2: #252420;
+    --bg: #F7F6F2; --surface: #FFFFFF; --surface2: #F0EEE8;
+    --border: rgba(0,0,0,0.10); --border2: rgba(0,0,0,0.18);
+    --text: #1A1916; --text2: #6B6A64; --text3: #9C9A92;
+    --ocre: #C9922A; --ocre-light: #F5E6C8;
+    --rojo: #A32D2D;
+    --radius: 10px; --radius-lg: 16px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+    --shadow-lg: 0 8px 40px rgba(0,0,0,0.15);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: #2A2825; color: var(--text); overflow-x: hidden; min-height: 100vh; }
+
+  /* Fondo animado */
+  .bg-glow { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 0; }
+  .bg-glow::before { content: ''; position: absolute; top: -20%; right: -10%; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(201,146,42,0.07) 0%, transparent 65%); animation: float1 8s ease-in-out infinite; }
+  .bg-glow::after { content: ''; position: absolute; bottom: -10%; left: -10%; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(163,45,45,0.05) 0%, transparent 65%); animation: float2 10s ease-in-out infinite; }
+  @keyframes float1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-20px,20px)} }
+  @keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(20px,-20px)} }
+
+  /* Wrapper */
+  .wrapper { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; padding: 60px 24px 80px; }
+
+  /* Header marca */
+  .marca { text-align: center; margin-bottom: 48px; }
+  .marca-nombre { font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ocre); opacity: 0.7; }
+  .marca-sep { width: 32px; height: 1px; background: rgba(201,146,42,0.3); margin: 10px auto; }
+  .marca-lab { font-size: 10px; font-family: 'DM Mono', monospace; color: rgba(255,255,255,0.2); text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* Badge evento */
+  .evento-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,146,42,0.08); border: 0.5px solid rgba(201,146,42,0.2); border-radius: 20px; padding: 6px 16px; margin-bottom: 28px; }
+  .evento-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ocre); animation: blink 1.5s ease infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .evento-badge span { font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(201,146,42,0.7); text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* Título principal */
+  .titulo-wrap { text-align: center; margin-bottom: 40px; }
+  .titulo-eyebrow { font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.2); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 16px; }
+  .titulo { font-size: clamp(36px,6vw,64px); font-weight: 600; letter-spacing: -2px; color: #F7F6F2; line-height: 1.0; margin-bottom: 10px; }
+  .titulo em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; color: var(--ocre); }
+  .titulo-sub { font-size: clamp(14px,2vw,17px); color: rgba(247,246,242,0.35); font-weight: 300; line-height: 1.65; max-width: 520px; margin: 0 auto; }
+
+  /* Datos del estudio */
+  .datos-strip { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin: 36px 0; padding: 20px 24px; background: rgba(255,255,255,0.07); border: 0.5px solid rgba(255,255,255,0.10); border-radius: var(--radius-lg); }
+  .dato { text-align: center; }
+  .dato-num { font-size: 28px; font-weight: 600; color: var(--ocre); letter-spacing: -1px; line-height: 1; margin-bottom: 4px; }
+  .dato-label { font-size: 10px; color: rgba(255,255,255,0.25); font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* Hallazgos preview */
+  .hallazgos { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+  .hallazgo { display: flex; gap: 14px; align-items: flex-start; background: rgba(255,255,255,0.07); border: 0.5px solid rgba(255,255,255,0.10); border-radius: var(--radius); padding: 16px 18px; }
+  .hallazgo-tag { font-family: 'DM Mono', monospace; font-size: 9px; color: #E07070; text-transform: uppercase; letter-spacing: 0.08em; background: rgba(163,45,45,0.18); border: 0.5px solid rgba(163,45,45,0.35); border-radius: 8px; padding: 3px 8px; white-space: nowrap; flex-shrink: 0; margin-top: 1px; }
+  .hallazgo-texto { font-size: 13px; color: rgba(247,246,242,0.55); line-height: 1.6; }
+  .hallazgo-texto strong { color: rgba(247,246,242,0.85); font-weight: 500; }
+
+  /* Qué aprenderás */
+  .aprende { margin-bottom: 40px; }
+  .aprende-titulo { font-size: 11px; font-family: 'DM Mono', monospace; color: rgba(255,255,255,0.25); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px; text-align: center; }
+  .aprende-items { display: flex; flex-direction: column; gap: 8px; }
+  .aprende-item { display: flex; gap: 12px; align-items: flex-start; }
+  .aprende-check { width: 18px; height: 18px; border-radius: 50%; background: rgba(201,146,42,0.1); border: 0.5px solid rgba(201,146,42,0.25); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .aprende-check svg { fill: var(--ocre); }
+  .aprende-item p { font-size: 13px; color: rgba(247,246,242,0.5); line-height: 1.55; }
+
+  /* CTA inscripción */
+  .cta-wrap { text-align: center; }
+  .cta-gratuito { display: inline-block; font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(201,146,42,0.6); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+  .btn-inscribir { display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; padding: 16px 40px; background: var(--ocre); border: none; border-radius: 32px; color: var(--dark); cursor: pointer; text-decoration: none; transition: all .2s; box-shadow: 0 4px 20px rgba(201,146,42,0.3); letter-spacing: -0.2px; }
+  .btn-inscribir:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 6px 28px rgba(201,146,42,0.4); }
+  .btn-inscribir svg { fill: var(--dark); }
+  .cta-nota { font-size: 11px; color: rgba(255,255,255,0.18); margin-top: 12px; font-family: 'DM Mono', monospace; }
+
+  /* Ponente */
+  .ponente { display: flex; align-items: center; gap: 16px; margin-top: 48px; padding-top: 32px; border-top: 0.5px solid rgba(255,255,255,0.06); }
+  .ponente-foto { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; object-position: center top; border: 1.5px solid rgba(201,146,42,0.25); flex-shrink: 0; }
+  .ponente-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--dark2); border: 1.5px solid rgba(201,146,42,0.25); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; color: var(--ocre); flex-shrink: 0; }
+  .ponente-info { flex: 1; }
+  .ponente-nombre { font-size: 14px; font-weight: 600; color: rgba(247,246,242,0.8); margin-bottom: 2px; }
+  .ponente-rol { font-size: 11px; color: rgba(247,246,242,0.3); line-height: 1.5; }
+  .ponente-co { margin-top: 6px; font-size: 12px; color: rgba(247,246,242,0.45); font-family: 'DM Sans', sans-serif; }
+
+  /* Footer */
+  .footer-mini { text-align: center; margin-top: 48px; }
+  .footer-mini p { font-size: 11px; color: rgba(255,255,255,0.15); font-family: 'DM Mono', monospace; }
+  .footer-mini a { color: var(--ocre); text-decoration: none; opacity: 0.6; }
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+
+<div class="wrapper">
+
+  <!-- Marca -->
+  <div class="marca">
+    <p class="marca-nombre">Isonauta</p>
+    <div class="marca-sep"></div>
+    <p class="marca-lab">Laboratorio de la Gestión · Investigación</p>
+  </div>
+
+  <!-- Badge evento -->
+  <div style="text-align:center">
+    <div class="evento-badge">
+      <span class="evento-dot"></span>
+      <span>Presentación de investigación · Inscripción gratuita</span>
+    </div>
+  </div>
+
+  <!-- Título -->
+  <div class="titulo-wrap">
+    <p class="titulo-eyebrow">Estudio · 108 profesionales ISO encuestados</p>
+    <h1 class="titulo">La Gran <em>Paradoja</em><br>de los Sistemas ISO</h1>
+    <p class="titulo-sub">Lo que 108 encargados de sistemas de gestión revelan sobre el liderazgo. El problema no es técnico. Nunca lo fue.</p>
+  </div>
+
+  <!-- Datos del estudio -->
+  <div class="datos-strip">
+    <div class="dato"><p class="dato-num">108</p><p class="dato-label">Profesionales encuestados</p></div>
+    <div class="dato"><p class="dato-num">8</p><p class="dato-label">Dimensiones analizadas</p></div>
+    <div class="dato"><p class="dato-num">40</p><p class="dato-label">Preguntas evaluadas</p></div>
+    <div class="dato"><p class="dato-num">4</p><p class="dato-label">Normas ISO representadas</p></div>
+  </div>
+
+  <!-- Hallazgos preview -->
+  <div class="hallazgos">
+    <div class="hallazgo">
+      <span class="hallazgo-tag">Hallazgo #1</span>
+      <p class="hallazgo-texto"><strong>La paradoja del compromiso declarativo.</strong> El liderazgo dice estar comprometido (3.72/5) pero no provee recursos reales (3.23/5). Brecha de −0.49 puntos entre discurso y práctica.</p>
+    </div>
+    <div class="hallazgo">
+      <span class="hallazgo-tag">Hallazgo #2</span>
+      <p class="hallazgo-texto"><strong>Participación en crisis.</strong> La concienciación sobre los beneficios del sistema es la variable más baja de toda la investigación: <strong>2.72/5</strong>. La gente no entiende para qué sirve ISO.</p>
+    </div>
+    <div class="hallazgo">
+      <span class="hallazgo-tag">Conclusión</span>
+      <p class="hallazgo-texto">ISO se implementa como <strong>ingeniería</strong> cuando en realidad es un problema de <strong>sociología organizacional</strong> — cultura, participación y sentido.</p>
+    </div>
+  </div>
+
+  <!-- Qué aprenderás -->
+  <div class="aprende">
+    <p class="aprende-titulo">En esta presentación verás</p>
+    <div class="aprende-items">
+      <div class="aprende-item">
+        <div class="aprende-check"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#C9922A" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <p>Los datos completos de las 8 dimensiones evaluadas y su interpretación sistémica</p>
+      </div>
+      <div class="aprende-item">
+        <div class="aprende-check"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#C9922A" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <p>Por qué el liderazgo declara compromiso pero no lo ejerce — y qué hacer al respecto</p>
+      </div>
+      <div class="aprende-item">
+        <div class="aprende-check"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#C9922A" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <p>El patrón estructural que explica por qué los SGC funcionan para la auditoría pero no para la organización</p>
+      </div>
+      <div class="aprende-item">
+        <div class="aprende-check"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#C9922A" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <p>Las implicaciones prácticas para encargados ISO, auditores y directivos</p>
+      </div>
+      <div class="aprende-item">
+        <div class="aprende-check"><svg width="9" height="9" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5" stroke="#C9922A" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <p>Cómo el Modelo Cultura Isonauta responde lo que la investigación revela que falta</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA inscripción -->
+  <div class="cta-wrap">
+    <p class="cta-gratuito">✓ Acceso gratuito · Sin costo</p>
+    <a href="https://forms.gle/AUgQhZoGoDitk2uGA" target="_blank" class="btn-inscribir">
+      <svg width="16" height="16" viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+      Inscribirme a la presentación
+    </a>
+    <p class="cta-nota">Recibirás el link de acceso por email tras inscribirte</p>
+  </div>
+
+  <!-- Ponente -->
+  <div class="ponente">
+    <img src="cristian.jpeg" alt="Cristián Cordero" class="ponente-foto" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ponente-avatar" style="display:none">CC</div>
+    <div class="ponente-info">
+      <p class="ponente-nombre">Cristián Cordero Placencia</p>
+      <p class="ponente-rol">Investigador principal · Fundador de Isonauta y Procesus<br>Sociólogo · 25 años en consultoría ISO</p>
+      <p class="ponente-co">Co-investigadores: Nilsson Cordero Placencia, Mg. Ingeniería Industrial · Joaquín Labbé Cordero, Sociólogo</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-mini">
+    <p>© 2026 · <a href="https://isonauta.vercel.app" target="_blank">Isonauta · Laboratorio de la Gestión</a></p>
+  </div>
+
+</div>
+
+</body>
+</html>
