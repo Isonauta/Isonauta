@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Gran Paradoja de los Sistemas ISO — Nodos Sistémicos 2026</title>
+<meta name="description" content="108 encargados de sistemas de gestión revelan lo que las auditorías no muestran. Investigación 2026 — Nodos Sistémicos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --azul:        #0A2540;
+    --azul-medio:  #1A3A5C;
+    --acento:      #C8973A;
+    --acento-claro:#E8B85A;
+    --blanco:      #F5F2EC;
+    --linea:       rgba(200,151,58,0.22);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--azul);
+    color: var(--blanco);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.3;
+  }
+
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  header {
+    padding: 2rem 0 1.5rem;
+    border-bottom: 0.5px solid var(--linea);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .brand { display: flex; align-items: center; gap: 10px; }
+
+  .brand-mark {
+    width: 30px; height: 30px;
+    border: 1.5px solid var(--acento);
+    border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .brand-name {
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--acento);
+  }
+
+  .header-tag { font-size: 11px; color: rgba(245,242,236,0.3); letter-spacing: 0.06em; }
+
+  /* HERO */
+  .hero { padding: 5rem 0 3rem; position: relative; }
+
+  .deco { position: absolute; pointer-events: none; border-radius: 50%; border: 0.5px solid rgba(200,151,58,0.07); }
+  .deco-1 { top: -20px; right: -130px; width: 420px; height: 420px; }
+  .deco-2 { top: 60px; right: -60px; width: 270px; height: 270px; border-color: rgba(200,151,58,0.04); }
+
+  .eyebrow {
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--acento); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .eyebrow::before { content: ''; width: 30px; height: 1px; background: var(--acento); flex-shrink: 0; }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 6.5vw, 4.8rem);
+    font-weight: 700; line-height: 1.06; color: var(--blanco);
+  }
+  h1 em { font-style: italic; color: var(--acento-claro); }
+
+  .hero-sub {
+    font-size: 1rem; font-weight: 300; line-height: 1.65;
+    color: rgba(245,242,236,0.6); max-width: 560px;
+    margin: 1.5rem 0 2.5rem;
+    padding-left: 1.4rem; border-left: 2px solid var(--acento);
+  }
+
+  /* DATOS */
+  .datos-row {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: var(--linea);
+    border: 0.5px solid var(--linea); border-radius: 12px;
+    overflow: hidden; margin-bottom: 3rem;
+  }
+
+  .dato { padding: 1.4rem 1rem; background: rgba(10,37,64,0.95); text-align: center; }
+
+  .dato-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 700;
+    color: var(--acento-claro); display: block;
+    line-height: 1; margin-bottom: 5px;
+  }
+
+  .dato-label { font-size: 11px; color: rgba(245,242,236,0.4); font-weight: 300; line-height: 1.4; }
+
+  /* DESCARGA */
+  .download-section {
+    background: rgba(26,58,92,0.3);
+    border: 0.5px solid rgba(200,151,58,0.35);
+    border-radius: 14px; padding: 2rem 2.2rem;
+    margin-bottom: 3.5rem;
+    display: flex; align-items: center;
+    justify-content: space-between;
+    gap: 2rem; flex-wrap: wrap;
+  }
+
+  .download-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 400;
+    color: var(--blanco); margin-bottom: 4px;
+  }
+
+  .download-info p { font-size: 12px; color: rgba(245,242,236,0.4); font-weight: 300; margin-bottom: 10px; }
+
+  .download-tags { display: flex; gap: 7px; flex-wrap: wrap; }
+
+  .tag {
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: rgba(200,151,58,0.1); color: var(--acento);
+    border: 0.5px solid rgba(200,151,58,0.28);
+    padding: 3px 9px; border-radius: 20px;
+  }
+
+  .btn-download {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 0.9rem 1.8rem;
+    background: var(--acento); color: var(--azul);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 500; letter-spacing: 0.05em;
+    text-decoration: none; border-radius: 8px;
+    transition: background 0.2s, transform 0.15s;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .btn-download:hover { background: var(--acento-claro); transform: translateY(-1px); }
+  .btn-download svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+  .section-label {
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--acento); margin-bottom: 1.4rem;
+  }
+
+  /* HALLAZGO */
+  .hallazgo-section { padding: 2.5rem 0; border-top: 0.5px solid var(--linea); }
+
+  .hallazgo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.5rem; }
+
+  .hallazgo-card {
+    padding: 1.4rem; border: 0.5px solid var(--linea);
+    border-radius: 10px; background: rgba(255,255,255,0.02);
+  }
+
+  .hallazgo-card h4 {
+    font-size: 12px; font-weight: 500;
+    color: var(--acento); letter-spacing: 0.06em; margin-bottom: 6px;
+  }
+
+  .hallazgo-card p { font-size: 13px; font-weight: 300; line-height: 1.65; color: rgba(245,242,236,0.65); }
+
+  .alerta-box {
+    margin: 2rem 0 0; padding: 1.4rem 1.6rem;
+    background: rgba(192,57,43,0.1);
+    border: 0.5px solid rgba(192,57,43,0.35);
+    border-radius: 10px;
+    display: flex; align-items: flex-start; gap: 1.2rem;
+  }
+
+  .alerta-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem; font-weight: 700;
+    color: #E87C6C; line-height: 1; flex-shrink: 0;
+  }
+
+  .alerta-text h4 { font-size: 13px; font-weight: 500; color: #E87C6C; margin-bottom: 5px; }
+  .alerta-text p { font-size: 13px; font-weight: 300; line-height: 1.6; color: rgba(245,242,236,0.6); }
+
+  /* TABLA */
+  .dimensiones-section { padding: 2.5rem 0; border-top: 0.5px solid var(--linea); }
+
+  .dim-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+
+  .dim-table th {
+    font-size: 10px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(245,242,236,0.35); text-align: left;
+    padding: 0 0 10px; border-bottom: 0.5px solid var(--linea);
+  }
+
+  .dim-table td {
+    padding: 11px 0; border-bottom: 0.5px solid rgba(200,151,58,0.08);
+    color: rgba(245,242,236,0.75); font-weight: 300; vertical-align: middle;
+  }
+
+  .dim-table td:nth-child(2) {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px; font-weight: 400;
+    color: rgba(245,242,236,0.9);
+    text-align: center; width: 80px;
+  }
+
+  .dim-table td:last-child { text-align: center; width: 90px; }
+
+  .badge {
+    display: inline-block; font-size: 9px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 3px 9px; border-radius: 20px;
+  }
+
+  .badge-critico  { background: rgba(192,57,43,0.2);  color: #E87C6C; border: 0.5px solid rgba(192,57,43,0.4); }
+  .badge-alerta   { background: rgba(214,137,16,0.15); color: #E8B85A; border: 0.5px solid rgba(214,137,16,0.35); }
+  .badge-adecuado { background: rgba(30,132,73,0.15);  color: #58D68D; border: 0.5px solid rgba(30,132,73,0.3); }
+
+  /* CICLO */
+  .ciclo-section { padding: 2.5rem 0; border-top: 0.5px solid var(--linea); }
+
+  .ciclo-step {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1rem 0; border-bottom: 0.5px solid rgba(200,151,58,0.08);
+  }
+  .ciclo-step:last-child { border-bottom: none; }
+
+  .ciclo-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700;
+    color: rgba(200,151,58,0.3); line-height: 1;
+    flex-shrink: 0; width: 28px; padding-top: 2px;
+  }
+
+  .ciclo-content h4 { font-size: 13px; font-weight: 500; color: rgba(245,242,236,0.85); margin-bottom: 3px; }
+  .ciclo-content p { font-size: 12px; font-weight: 300; color: rgba(245,242,236,0.45); line-height: 1.55; }
+
+  /* QUOTE */
+  .quote-block {
+    margin: 2rem 0;
+    padding: 1.8rem 2rem 1.8rem 2.2rem;
+    border-left: 2px solid var(--acento);
+    background: rgba(200,151,58,0.05);
+    border-radius: 0 10px 10px 0;
+  }
+
+  .quote-block blockquote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-size: 1.1rem;
+    line-height: 1.65; color: rgba(245,242,236,0.85);
+  }
+
+  /* EQUIPO */
+  .equipo-section { padding: 2.5rem 0; border-top: 0.5px solid var(--linea); }
+
+  .equipo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+
+  .equipo-card {
+    padding: 1.1rem 1.2rem;
+    border: 0.5px solid var(--linea); border-radius: 10px;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .equipo-card h4 { font-size: 13px; font-weight: 500; color: var(--blanco); margin-bottom: 3px; }
+  .equipo-card p { font-size: 11px; font-weight: 300; color: rgba(245,242,236,0.45); line-height: 1.5; }
+
+  /* LICENCIA */
+  .license-section { border-top: 0.5px solid var(--linea); padding: 2rem 0; }
+
+  .license-box {
+    background: rgba(255,255,255,0.02);
+    border: 0.5px solid var(--linea); border-radius: 10px;
+    padding: 1.4rem 1.6rem;
+    display: flex; gap: 1.4rem;
+    align-items: flex-start; flex-wrap: wrap;
+  }
+
+  .license-badge { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+
+  .cc-icons { display: flex; gap: 4px; align-items: center; }
+
+  .cc-circle {
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 1.5px solid rgba(245,242,236,0.35);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700;
+    color: rgba(245,242,236,0.55);
+    background: rgba(255,255,255,0.04);
+  }
+  .cc-circle.main { border-color: var(--acento); color: var(--acento); font-size: 11px; }
+
+  .license-type { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--acento); font-weight: 500; }
+
+  .license-text { flex: 1; min-width: 220px; }
+
+  .license-text h4 { font-size: 12px; font-weight: 500; color: var(--blanco); margin-bottom: 8px; }
+
+  .license-items { list-style: none; margin-bottom: 10px; }
+
+  .license-items li {
+    font-size: 11px; font-weight: 300;
+    color: rgba(245,242,236,0.5); line-height: 1.6;
+    padding: 2px 0 2px 14px; position: relative;
+  }
+  .license-items li::before { content: '—'; position: absolute; left: 0; color: var(--acento); font-size: 9px; top: 4px; }
+
+  .license-meta { font-size: 11px; color: rgba(245,242,236,0.35); line-height: 1.7; }
+  .license-meta strong { color: rgba(245,242,236,0.55); font-weight: 500; }
+  .license-meta a { color: var(--acento); text-decoration: none; }
+  .license-meta a:hover { text-decoration: underline; }
+
+  /* FOOTER */
+  footer {
+    border-top: 0.5px solid var(--linea);
+    padding: 1.8rem 0 2.5rem;
+    display: flex; align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+
+  .footer-note { font-size: 11px; color: rgba(245,242,236,0.25); }
+  .footer-note strong { color: var(--acento); font-weight: 500; }
+
+  .isonauta-mention { font-size: 11px; color: rgba(245,242,236,0.18); font-style: italic; }
+
+  @media (max-width: 640px) {
+    h1 { font-size: 2.4rem; }
+    .datos-row { grid-template-columns: repeat(2, 1fr); }
+    .hallazgo-grid { grid-template-columns: 1fr; }
+    .equipo-grid { grid-template-columns: 1fr; }
+    .download-section { flex-direction: column; }
+    .btn-download { width: 100%; justify-content: center; }
+    .deco { display: none; }
+    .hero { padding: 3rem 0 2rem; }
+    .alerta-box { flex-direction: column; gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="brand">
+      <div class="brand-mark">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="6" stroke="#C8973A" stroke-width="1.4"/>
+          <path d="M4 8h8M8 4v8" stroke="#C8973A" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="brand-name">Nodos Sistémicos</span>
+    </div>
+    <span class="header-tag">Investigación · Talcahuano, Chile · 2026</span>
+  </header>
+
+  <section class="hero">
+    <div class="deco deco-1"></div>
+    <div class="deco deco-2"></div>
+
+    <div class="eyebrow">Investigación aplicada · 108 encargados de sistemas ISO</div>
+
+    <h1>La Gran <em>Paradoja</em><br>de los Sistemas ISO</h1>
+
+    <p class="hero-sub">Lo que 108 encargados de sistemas integrados de gestión revelan sobre el liderazgo en las organizaciones certificadas. Los sistemas no fallan por falta de procedimientos. Fallan por falta de cultura.</p>
+
+    <div class="datos-row">
+      <div class="dato">
+        <span class="dato-num">108</span>
+        <span class="dato-label">encargados de SGI encuestados</span>
+      </div>
+      <div class="dato">
+        <span class="dato-num">40</span>
+        <span class="dato-label">preguntas escala Likert 1–5</span>
+      </div>
+      <div class="dato">
+        <span class="dato-num">4</span>
+        <span class="dato-label">normas ISO evaluadas</span>
+      </div>
+      <div class="dato">
+        <span class="dato-num">8+</span>
+        <span class="dato-label">años de experiencia promedio</span>
+      </div>
+    </div>
+
+    <div class="download-section">
+      <div class="download-info">
+        <h3>Descargar investigación completa</h3>
+        <p>Acceso gratuito · PDF · Sin registro</p>
+        <div class="download-tags">
+          <span class="tag">ISO 9001</span>
+          <span class="tag">ISO 14001</span>
+          <span class="tag">ISO 45001</span>
+          <span class="tag">Cultura organizacional</span>
+          <span class="tag">Liderazgo</span>
+        </div>
+      </div>
+      <a class="btn-download" href="https://drive.google.com/uc?export=download&id=1F3U1Dw0NnNYQceD5dAMaF2SdLjCj7WSb" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 16 16" fill="none">
+          <path d="M8 2v8M5 7l3 3 3-3M2 11v1a2 2 0 002 2h8a2 2 0 002-2v-1" stroke="#0A2540" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Descargar PDF
+      </a>
+    </div>
+  </section>
+
+  <!-- HALLAZGO CENTRAL -->
+  <section class="hallazgo-section">
+    <div class="section-label">El hallazgo central</div>
+
+    <div class="hallazgo-grid">
+      <div class="hallazgo-card">
+        <h4>Lo técnico funciona. Lo humano, no.</h4>
+        <p>Las dimensiones procedimentales operan en zona adecuada. Las que involucran voluntad, comprensión y apropiación de personas están en alerta o estado crítico.</p>
+      </div>
+      <div class="hallazgo-card">
+        <h4>La Paradoja del Compromiso</h4>
+        <p>La alta dirección declara compromiso con el sistema (3.72/5) pero no lo traduce en tiempo real (3.50) ni en recursos financieros (3.31). Una brecha de hasta 0.41 puntos entre el decir y el hacer.</p>
+      </div>
+      <div class="hallazgo-card">
+        <h4>Crisis de sentido, no falla técnica</h4>
+        <p>El personal no entiende para qué sirve el sistema que supuestamente lo involucra. Sin comprensión del propósito, la participación es imposible y la mejora continua, una ficción.</p>
+      </div>
+      <div class="hallazgo-card">
+        <h4>Silos que fragmentan el sistema</h4>
+        <p>La coordinación interdepartamental cae a 3.29/5 aunque los procesos estén documentados (3.82). El sistema funciona como archipiélago de islas documentadas, no como ecosistema integrado.</p>
+      </div>
+    </div>
+
+    <div class="alerta-box">
+      <div class="alerta-num">2.72</div>
+      <div class="alerta-text">
+        <h4>El indicador más bajo de toda la investigación</h4>
+        <p>Concienciación sobre los beneficios del sistema. La gente no sabe para qué sirve ISO. Solo sabe que hay que cumplirlo. Sin comprensión del propósito, la participación es imposible y la mejora continua, una ficción.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TABLA -->
+  <section class="dimensiones-section">
+    <div class="section-label">Mapa de resultados — 8 dimensiones evaluadas</div>
+    <table class="dim-table">
+      <thead>
+        <tr>
+          <th>Dimensión</th>
+          <th style="text-align:center;">Puntaje</th>
+          <th style="text-align:center;">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Gestión de Procesos</td><td>3.62 / 5</td><td><span class="badge badge-adecuado">Adecuado</span></td></tr>
+        <tr><td>Recursos y Capacitación</td><td>3.61 / 5</td><td><span class="badge badge-adecuado">Adecuado</span></td></tr>
+        <tr><td>Barreras e Impedimentos</td><td>3.55 / 5</td><td><span class="badge badge-adecuado">Adecuado</span></td></tr>
+        <tr><td>Liderazgo Alta Dirección</td><td>3.49 / 5</td><td><span class="badge badge-alerta">Alerta</span></td></tr>
+        <tr><td>Satisfacción General</td><td>3.44 / 5</td><td><span class="badge badge-alerta">Alerta</span></td></tr>
+        <tr><td>Mejora Continua</td><td>3.40 / 5</td><td><span class="badge badge-alerta">Alerta</span></td></tr>
+        <tr><td>Efectividad del Sistema</td><td>3.39 / 5</td><td><span class="badge badge-critico">Crítico</span></td></tr>
+        <tr><td>Participación del Personal</td><td>3.00 / 5</td><td><span class="badge badge-critico">Crítico</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- CICLO -->
+  <section class="ciclo-section">
+    <div class="section-label">El ciclo que nadie quiere ver</div>
+    <div class="ciclo-step">
+      <div class="ciclo-num">①</div>
+      <div class="ciclo-content">
+        <h4>Exigencia de mercado</h4>
+        <p>La certificación se busca por presión del cliente o licitación, no por convicción interna.</p>
+      </div>
+    </div>
+    <div class="ciclo-step">
+      <div class="ciclo-num">②</div>
+      <div class="ciclo-content">
+        <h4>El consultor tiene todo listo</h4>
+        <p>Documenta, diseña procedimientos y entrega el sistema "llave en mano".</p>
+      </div>
+    </div>
+    <div class="ciclo-step">
+      <div class="ciclo-num">③</div>
+      <div class="ciclo-content">
+        <h4>Capacitación superficial</h4>
+        <p>El personal recibe 3 a 5 días de formación — suficiente para la auditoría, insuficiente para la apropiación.</p>
+      </div>
+    </div>
+    <div class="ciclo-step">
+      <div class="ciclo-num">④</div>
+      <div class="ciclo-content">
+        <h4>Auditoría externa</h4>
+        <p>La auditoría evalúa evidencias documentales. La organización obtiene la certificación.</p>
+      </div>
+    </div>
+    <div class="ciclo-step">
+      <div class="ciclo-num">⑤</div>
+      <div class="ciclo-content">
+        <h4>Sistema cae en desuso</h4>
+        <p>Sin apropiación interna, el sistema se activa de emergencia antes de cada auditoría y luego desaparece.</p>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      <blockquote>"No hables bonito, piensa hondo."</blockquote>
+    </div>
+  </section>
+
+  <!-- EQUIPO -->
+  <section class="equipo-section">
+    <div class="section-label">Equipo investigador</div>
+    <div class="equipo-grid">
+      <div class="equipo-card">
+        <h4>Cristián Cordero Placencia</h4>
+        <p>Lic. en Sociología, Post. en Biología del Conocer. Consultor en sistemas de gestión.</p>
+      </div>
+      <div class="equipo-card">
+        <h4>Nilsson Cordero Placencia</h4>
+        <p>Mg. en Ingeniería Industrial. Consultor en sistemas de gestión y Co-investigador.</p>
+      </div>
+      <div class="equipo-card">
+        <h4>Joaquín Labbé Cordero</h4>
+        <p>Sociólogo con especialización en Lingüística. Investigador colaborador.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LICENCIA -->
+  <section class="license-section">
+    <div class="section-label">Licencia de uso</div>
+    <div class="license-box">
+      <div class="license-badge">
+        <div class="cc-icons">
+          <div class="cc-circle main">CC</div>
+          <div class="cc-circle">BY</div>
+          <div class="cc-circle">NC</div>
+          <div class="cc-circle">ND</div>
+        </div>
+        <span class="license-type">BY-NC-ND 4.0</span>
+      </div>
+      <div class="license-text">
+        <h4>Creative Commons Atribución-NoComercial-SinDerivadas 4.0 Internacional</h4>
+        <ul class="license-items">
+          <li><strong>Atribución</strong> — Debe reconocer la autoría indicando nombre del autor e institución.</li>
+          <li><strong>NoComercial</strong> — No puede utilizar este material con fines comerciales.</li>
+          <li><strong>SinDerivadas</strong> — No puede transformar ni distribuir material derivado.</li>
+        </ul>
+        <div class="license-meta">
+          <strong>Autor:</strong> Cristián Cordero Placencia &nbsp;·&nbsp;
+          <strong>Institución:</strong> PROCESUS Consultoría — Laboratorio de Comunicación Social y Artificial<br>
+          <strong>Contacto:</strong> cristian@cristiancordero.cl &nbsp;·&nbsp;
+          <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" target="_blank" rel="noopener">creativecommons.org/licenses/by-nc-nd/4.0</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-note">
+      <strong>Nodos Sistémicos</strong> · Talcahuano, Chile · 2026
+    </div>
+    <div class="isonauta-mention">Una investigación vinculada al Modelo Cultura Isonauta — PROCESUS Consultoría</div>
+  </footer>
+
+</div>
+</body>
+</html>
